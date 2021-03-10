@@ -1,51 +1,45 @@
-#include <iostream>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-using namespace std;
-
-
-class PalindromoIterativo {
-PalindromoIterativo(){}
-public:
-    static void main(){
-		string texto;
-		bool finaliza;
-
-		do {
-			std::getline(cin, texto);
-
-            finaliza = texto.at(0)=='F' && texto.at(1)=='I' && texto.at(2)=='M';
-
-			if(!finaliza){
-				if(isPalindromo(texto))
-					cout << "SIM\n";
-				else
-					cout << "NAO\n";
-			}
-
-		} while (!finaliza);
-
-	}
-
-	static bool isPalindromo(string texto){
-	    bool igual = true;
-	    string invertida = "";
-
-	    for(int i=0;i<texto.length();i++) {
-            invertida = invertida + texto.at(texto.length()-i-1);
-        }
-
-        for(int i=0;i<texto.length();i++) {
-            if(texto.at(i)!=invertida.at(i))
-                igual = false;
-        }
-
-        return igual;
-	}
-
-};
+int isPalindromo(char texto[]);
 
 int main()
 {
-    PalindromoIterativo::main();
+    char str[255] = { '\0' };
+    int finaliza;
+
+    do {
+        //scanf(" %s%*[^\n]",&str);
+        fgets(str, sizeof(str), stdin);
+        str[strlen(str)-1]='\0';
+
+        if(str[0]=='F' && str[1]=='I' && str[2]=='M')
+            finaliza = 1;
+
+        if(finaliza!=1) {
+            if(isPalindromo(str)==1)
+                printf("SIM\n");
+            else
+                printf("NAO\n");
+        }
+
+    } while (finaliza!=1);
     return 0;
+}
+
+int isPalindromo(char texto[]){
+    int igual = 1;
+    char invertida[255] = "";
+
+    for(int i=0;i<strlen(texto);i++) {
+        invertida[i] = texto[strlen(texto)-i-1];
+    }
+
+    for(int i=0;i<strlen(texto);i++) {
+        if(texto[i]!=invertida[i])
+            igual = 0;
+    }
+
+    return igual;
 }
