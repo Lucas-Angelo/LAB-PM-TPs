@@ -9,11 +9,11 @@ public class Main {
         do {
             str = MyIO.readLine();
 
-            if(!(str.equals("FIM"))) {
+            if(!(str.equals("0"))) {
                 MyIO.println(binario(str));
             }
 
-        } while (!(str.equals("FIM")));
+        } while (!(str.equals("0")));
     }
 
     private static int binario(String str) {
@@ -29,8 +29,30 @@ public class Main {
             binarios[j] = Integer.parseInt(valores[i]);
         }
 
-        for (int i=0; i<binarios.length; i++) {
-            System.out.println(binarios[i]);
+//        for (int i=0; i<binarios.length; i++) {
+//            System.out.print(binarios[i] + " ");
+//        }
+
+        String expresao = valores[2+n-1];
+        System.out.println(expresao);
+
+        int parada=0;
+
+        int i=0;
+        while(i<expresao.length()){
+            if(expresao.charAt(i)==','){
+                int i1=i;
+                while(i1>parada) {
+                    if(expresao.charAt(i1)=='A') {
+                        if (expresao.charAt(i1-2)=='t'){ // Acha o not() com A
+                            System.out.println("AQUI");
+                        }
+                    }
+                    i1--;
+                }
+                parada=i;
+            }
+            i++;
         }
 
         return 1;
