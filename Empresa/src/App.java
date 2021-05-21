@@ -1,10 +1,8 @@
 import java.io.IOException;
 import java.util.List;
 
-import modelos.Analista;
-import modelos.Funcionario;
-import modelos.Gerente;
-import modelos.Sistema;
+import modelos.*;
+
 /** Classe principal do App, onde está contida a função main. Além disso, alguns métodos de auxílio.
 * @author Lucas Ângelo.
 * @version 1.0

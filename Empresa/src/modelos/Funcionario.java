@@ -1,8 +1,10 @@
 package modelos;
 
 import java.util.LinkedList;
+import java.util.regex.PatternSyntaxException;
 
 import arquivos.ArquivoTextoLeitura;
+
 import enums.Nivel;
 
 /** Classe mãe abstrata de Funcionario, contendo atributos e métodos genéricos para todos os tipos de funcionários.
@@ -19,13 +21,13 @@ public abstract class Funcionario {
     public static final double SALARIO_MIN_BASE;
 
     static {
-        matriculaAtual=0;
+        matriculaAtual=-1;
         SALARIO_MIN_BASE = 2500.00;
     }
 
     private void init(String nome) {
-        this.matricula = matriculaAtual;
         matriculaAtual++;
+        this.matricula = matriculaAtual;
         this.nome = nome;
     }
 
@@ -43,48 +45,37 @@ public abstract class Funcionario {
         do {
             linha = leitura.ler();
             if(linha!=null) {
-                String dados[] = linha.split(";");
+                String dados[] = null;
+                try {
+                    dados = linha.split(";");
+                } catch (PatternSyntaxException erro) {
+                    erro.printStackTrace();
+                }
 
-                if(dados[0].equals("Gerente")) {
-                    int matricula = 0, projetosQt = 0;
-                    String nome = new String(dados[2]);
+                int matricula = 0, dadoExtra = 0;
+                String nome = new String();
+
+                if(dados!=null && dados.length==4) {
+                    nome = new String(dados[2]);
                     try {
                         matricula = Integer.parseInt(dados[1]);
-                        projetosQt = Integer.parseInt(dados[3]);
+                        dadoExtra = Integer.parseInt(dados[3]);
                     } catch (NumberFormatException erro) {
                         erro.printStackTrace();
                     }
-                    matriculaAtual = matricula;
-                    Gerente gerente = new Gerente(nome, projetosQt);
-                    funcionarios.add(gerente);
                 }
-                else if(dados[0].equals("AnalistaJR")) {
-                    int matricula = 0, horasExtra = 0;
-                    String nome = new String(dados[2]);
-                    try {
-                        matricula = Integer.parseInt(dados[1]);
-                        horasExtra = Integer.parseInt(dados[3]);
-                    } catch (NumberFormatException erro) {
-                        erro.printStackTrace();
-                    }
-                    matriculaAtual = matricula;
-                    Analista analista = new Analista(nome, Nivel.JUNIOR, horasExtra);
-                    funcionarios.add(analista);
-                }
-                else if(dados[0].equals("AnalistaSR")) {
-                    int matricula = 0, horasExtra = 0;
-                    String nome = new String(dados[2]);
-                    try {
-                        matricula = Integer.parseInt(dados[1]);
-                        horasExtra = Integer.parseInt(dados[3]);
-                    } catch (NumberFormatException erro) {
-                        erro.printStackTrace();
-                    }
-                    matriculaAtual = matricula;
-                    Analista analista = new Analista(nome, Nivel.SENIOR, horasExtra);
-                    funcionarios.add(analista);
-                }
+
+                matriculaAtual = matricula;
+
+                Funcionario funcionario;
+                if(dados[0].equals("Gerente"))
+                    funcionario = new Gerente(nome, dadoExtra);
+                else if(dados[0].equals("AnalistaJR"))
+                    funcionario = new Analista(nome, Nivel.JUNIOR, dadoExtra);
+                else
+                    funcionario = new Analista(nome, Nivel.SENIOR, dadoExtra);
                 
+                funcionarios.add(funcionario);  
             }
         } while (linha!=null);
         

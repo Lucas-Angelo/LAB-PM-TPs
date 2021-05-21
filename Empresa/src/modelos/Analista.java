@@ -1,6 +1,7 @@
 package modelos;
 
 import enums.Nivel;
+
 import excecoes.MaximoHorasExtrasException;
 import excecoes.MinimoSalarioBaseException;
 
