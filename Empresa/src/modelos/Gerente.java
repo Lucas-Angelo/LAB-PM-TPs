@@ -46,6 +46,7 @@ public class Gerente extends Funcionario implements IPJ {
         } else {
             this.qtProjetos = qtProjetos;
         }
+        calcPagamento();
     }
     public int getQtProjetos() {
         return this.qtProjetos;
@@ -79,6 +80,11 @@ public class Gerente extends Funcionario implements IPJ {
             bonus += salarioBase * PORCENTAGEM_BONUS;
         }
         return bonus;
+    }
+    @Override
+    public double pagar() {
+        this.pagtoAReceber = calcPagamento();
+        return this.pagtoAReceber;
     }
 
     public String toString() {

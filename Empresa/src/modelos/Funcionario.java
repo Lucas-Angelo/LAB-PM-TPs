@@ -7,7 +7,7 @@ import arquivos.ArquivoTextoLeitura;
 
 import enums.Nivel;
 
-/** Classe mãe abstrata de Funcionario, contendo atributos e métodos genéricos para todos os tipos de funcionários.
+/** Classe mãe abstrata de Funcionario, contendo atributos e métodos genéricos para todos (Gerente e Analista) os tipos de funcionários.
 * @author Lucas Ângelo
 * @version 1.0
 */
@@ -21,25 +21,25 @@ public abstract class Funcionario {
     public static final double SALARIO_MIN_BASE;
 
     static {
-        matriculaAtual=-1;
+        matriculaAtual=0;
         SALARIO_MIN_BASE = 2500.00;
     }
 
     private void init(String nome) {
-        matriculaAtual++;
         this.matricula = matriculaAtual;
+        matriculaAtual++;
         this.nome = nome;
     }
 
     public Funcionario(String nome) {
         init(nome);
     }
-    
-    public static LinkedList<Funcionario> carregarFuncionariosDoArquivo() {
+
+    public static LinkedList<Funcionario> lerFuncionariosDoArquivo(String nomeDoArquivo) {
         LinkedList<Funcionario> funcionarios = new LinkedList<>();
 
         ArquivoTextoLeitura leitura = new ArquivoTextoLeitura();
-        leitura.abrirArquivo("funcionarios.txt");
+        leitura.abrirArquivo(nomeDoArquivo);
 
         String linha = null;
         do {
@@ -92,12 +92,16 @@ public abstract class Funcionario {
     public String getNome() {
         return this.nome;
     }
+    public double getPagtoAReceber() {
+        return this.pagtoAReceber;
+    }
 
-    /**Métod abstrato para calculo do salário de um funcionário instânciado.
+    /** Método abstrato para calculo do salário de um funcionário instânciado.
     * @author Lucas Ângelo
     * @return Double - Valor do salário.
     */
     public abstract double calcPagamento();
+    public abstract double pagar();
 
     public boolean equals(Funcionario funcionario) {
         boolean igual = false;

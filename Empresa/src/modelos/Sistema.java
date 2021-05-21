@@ -3,6 +3,7 @@ package modelos;
 import java.util.LinkedList;
 import java.util.List;
 
+import arquivos.ArquivoTextoEscrita;
 import excecoes.FuncionarioContratadoException;
 
 /** Classe de controle do Sistema, onde está contido os métodos para calcular pagamentos de funcionários.
@@ -57,6 +58,13 @@ public class Sistema {
         }
         return total;
     }
+    public double pagarTodosOsFuncionarios() {
+        double total = 0;
+        for (Funcionario funcionario : this.funcionarios) {
+            total += funcionario.pagar();
+        }
+        return total;
+    }
 
     /** Método para calculo do salário de um funcionário.
     * @author Lucas Ângelo.
@@ -71,6 +79,14 @@ public class Sistema {
         }
         return salario;
     }
+    public double pagarFuncionario(int matricula) {
+        double salario = 0;
+        for (Funcionario funcionario : this.funcionarios) {
+            if(funcionario.getMatricula()==matricula)
+                salario = funcionario.pagar();
+        }
+        return salario;
+    }
 
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder();
@@ -78,5 +94,11 @@ public class Sistema {
             stringBuilder.append(funcionario.toString() + "\n");
         }
         return stringBuilder.toString();
+    }
+    public void salvar(String nomeDoArquivo) {
+        ArquivoTextoEscrita escrita = new ArquivoTextoEscrita();
+        escrita.abrirArquivo(nomeDoArquivo);
+        escrita.escrever(toString());
+        escrita.fecharArquivo();
     }
 }
