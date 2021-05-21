@@ -3,6 +3,7 @@ package modelos;
 import java.util.LinkedList;
 
 import arquivos.ArquivoTextoLeitura;
+import enums.Nivel;
 
 /** Classe mãe abstrata de Funcionario, contendo atributos e métodos genéricos para todos os tipos de funcionários.
 * @author Lucas Ângelo
@@ -56,6 +57,32 @@ public abstract class Funcionario {
                     matriculaAtual = matricula;
                     Gerente gerente = new Gerente(nome, projetosQt);
                     funcionarios.add(gerente);
+                }
+                else if(dados[0].equals("AnalistaJR")) {
+                    int matricula = 0, horasExtra = 0;
+                    String nome = new String(dados[2]);
+                    try {
+                        matricula = Integer.parseInt(dados[1]);
+                        horasExtra = Integer.parseInt(dados[3]);
+                    } catch (NumberFormatException erro) {
+                        erro.printStackTrace();
+                    }
+                    matriculaAtual = matricula;
+                    Analista analista = new Analista(nome, Nivel.JUNIOR, horasExtra);
+                    funcionarios.add(analista);
+                }
+                else if(dados[0].equals("AnalistaSR")) {
+                    int matricula = 0, horasExtra = 0;
+                    String nome = new String(dados[2]);
+                    try {
+                        matricula = Integer.parseInt(dados[1]);
+                        horasExtra = Integer.parseInt(dados[3]);
+                    } catch (NumberFormatException erro) {
+                        erro.printStackTrace();
+                    }
+                    matriculaAtual = matricula;
+                    Analista analista = new Analista(nome, Nivel.SENIOR, horasExtra);
+                    funcionarios.add(analista);
                 }
                 
             }

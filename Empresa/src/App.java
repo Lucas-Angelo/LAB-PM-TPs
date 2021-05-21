@@ -1,7 +1,9 @@
 import java.io.IOException;
 import java.util.List;
 
+import modelos.Analista;
 import modelos.Funcionario;
+import modelos.Gerente;
 import modelos.Sistema;
 /** Classe principal do App, onde está contida a função main. Além disso, alguns métodos de auxílio.
 * @author Lucas Ângelo.
@@ -15,12 +17,17 @@ public class App {
      */
     public static void main(String[] args) throws Exception {
         limparTerminal();
+        
+        Analista.setSalarioBase(10000);
+        Gerente.setSalarioBase(10000);
         Sistema sistema = new Sistema();
         List<Funcionario> funcionarios = Funcionario.carregarFuncionariosDoArquivo();
         sistema.contratarVarios(funcionarios);
 
         System.out.print(sistema.toString());
-        System.out.println(funcionarios.get(0).calcPagamento());
+        for(Funcionario funncionario : funcionarios) {
+            System.out.println(funncionario.calcPagamento());
+        }
         System.out.println(sistema.calcTotalAPagar());
     }
 

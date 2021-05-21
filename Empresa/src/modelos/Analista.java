@@ -1,18 +1,75 @@
 package modelos;
 
+import enums.Nivel;
+import excecoes.MaximoHorasExtrasException;
+import excecoes.MinimoSalarioBaseException;
+
 import interfaces.ICLT;
 
 public class Analista extends Funcionario implements ICLT {
+    protected int qtHorasExtra;
+    protected Nivel nivel;
 
-    public Analista(String nome) {
+    protected static double salarioBase;
+
+    public static final double PORCENTAGEM_SENIOR;
+    public static final int MAX_HORAS_EXTRA;
+
+    static {
+        salarioBase = SALARIO_MIN_BASE;
+        PORCENTAGEM_SENIOR = 0.5;
+        MAX_HORAS_EXTRA = 40;
+    }
+
+    private void init(Nivel nivel, int qtHorasExtra) {
+        setQtHorasExtra(qtHorasExtra);
+        this.nivel = nivel;
+    }
+
+    public Analista(String nome, Nivel nivel, int qtHorasExtra) {
         super(nome);
-        //TODO Auto-generated constructor stub
+        init(nivel, qtHorasExtra);
+    }
+    public Analista(String nome, Nivel nivel) {
+        super(nome);
+        init(nivel, 0);
+    }
+
+    // Getters e Setters
+    public void setQtHorasExtra(int qtHorasExtra) {
+        if(qtHorasExtra>MAX_HORAS_EXTRA || qtHorasExtra<0) {
+            try {
+                throw new MaximoHorasExtrasException("O máximo de horas extras que um analista pode ter é " + MAX_HORAS_EXTRA + " e mínimo 0. Quantia de horas extra não alterada.");
+            } catch (MaximoHorasExtrasException erro) {
+                System.out.println(erro.getMessage());
+                //erro.printStackTrace();
+            }
+        } else {
+            this.qtHorasExtra = qtHorasExtra;
+        }
+    }
+    public int getQtHorasExtra() {
+        return this.qtHorasExtra;
+    }
+    public static void setSalarioBase(double salarioBaseNovo) {
+        if(salarioBaseNovo<SALARIO_MIN_BASE) {
+            try {
+                throw new MinimoSalarioBaseException("O salário base tem valor mínimo de R$" + SALARIO_MIN_BASE + "0. Salário base de gerentes não alterado.");
+            } catch (MinimoSalarioBaseException erro) {
+                System.out.println(erro.getMessage());
+                //erro.printStackTrace();
+            }
+        } else {
+            salarioBase = salarioBaseNovo;
+        }
+    }
+    public static double getSalarioBase() {
+        return salarioBase;
     }
 
     @Override
     public double valorHorasExtras() {
-        // TODO Auto-generated method stub
-        return 0;
+        return (this.qtHorasExtra/90.0) * salarioBase;
     }
 
     @Override
@@ -29,14 +86,18 @@ public class Analista extends Funcionario implements ICLT {
 
     @Override
     public double calcPagamento() {
-        // TODO Auto-generated method stub
-        return 0;
+        double horasExtra = valorHorasExtras();
+        this.pagtoAReceber = (horasExtra + (salarioBase * this.nivel.getSalarioBase()));
+        return this.pagtoAReceber;
     }
 
     @Override
     public String toString() {
-        // TODO Auto-generated method stub
-        return null;
+        String abreviacao = (this.nivel == Nivel.JUNIOR) ? "JR" : "SR";
+        StringBuilder stringBuilder = new StringBuilder (
+            "Analista" + abreviacao + ";" + this.matricula + ";" + this.nome + ";" + this.qtHorasExtra
+        );
+        return stringBuilder.toString();
     }
 
 }

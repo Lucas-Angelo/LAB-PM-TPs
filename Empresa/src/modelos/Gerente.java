@@ -2,6 +2,7 @@ package modelos;
 
 import excecoes.MaximoProjetosException;
 import excecoes.MinimoSalarioBaseException;
+
 import interfaces.IPJ;
 
 public class Gerente extends Funcionario implements IPJ {
@@ -13,7 +14,7 @@ public class Gerente extends Funcionario implements IPJ {
     public static final double PORCENTAGEM_BONUS;
 
     static {
-        salarioBase = 2500.0;
+        salarioBase = SALARIO_MIN_BASE;
         MAX_PROJETOS = 5;
         PORCENTAGEM_BONUS = 0.2;
     }

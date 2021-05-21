@@ -1,2 +1,4 @@
 Gerente;001;Maria Rosa;1
 Gerente;002;Lucas Ângelo;1
+AnalistaSR;003;Henrique;9
+AnalistaJR;004;Jose;9
