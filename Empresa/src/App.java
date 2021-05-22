@@ -10,6 +10,7 @@ import modelos.*;
 * @since Release 01, (Revisão para a prova).
 */
 public class App {
+
     /** Método principal/main do App.
     * @author Lucas Ângelo.
     * @param args Não utilizado.
@@ -259,7 +260,7 @@ public class App {
     }
 
     /** Método para solicitar dados de preenchimento para criar um novo objeto da classe Funcionário.
-    * Utilizado pelo 'case' == 2 do menu de opções.
+     * Utilizado pelo 'case' == 2 do menu de opções.
     * @author Lucas Ângelo.
     * @param  scanner Scanner - O escaner de dados do teclado para preencher informações do novo funcionário.
     * @param  funcionario Funcionario - O objeto funcionário que será instânciado como algum tipo de funcionário e preenchido.
@@ -346,6 +347,10 @@ public class App {
         return opcao;
     }
 
+    /** Método para pausar a execução do sistema e possibilitar o usuário ver as mensagens.
+    * @author Lucas Ângelo.
+    * @param  scanner Scanner - O escaner de dados do teclado para verificar se o usuário deseja continuar.
+    */
     static void pausa(Scanner scanner) {
         System.out.println("Enter para continuar.");
         scanner.nextLine();
@@ -380,7 +385,7 @@ public class App {
     }
 
     /** Método para limpar o terminal do programa.
-    * Eficiente para editores de texto como VSCode, IDE's não precisam.
+     * Eficiente para editores de texto como VSCode, IDE's não precisam.
     * @author Lucas Ângelo.
     * @throws InterruptedException Se ocorrer algum erro de interrupção por parte do SO ao tentar lançar o comando no cmd.
     * @throws IOException Se ocorrer algum erro ao tentar emtrar ou sair com o comando no cmd.
