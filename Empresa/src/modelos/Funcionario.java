@@ -8,8 +8,9 @@ import arquivos.ArquivoTextoLeitura;
 import enums.Nivel;
 
 /** Classe mãe abstrata de Funcionario, contendo atributos e métodos genéricos para todos (Gerente e Analista) os tipos de funcionários.
-* @author Lucas Ângelo
+* @author Lucas Ângelo.
 * @version 1.0
+* @since Release 01, (Revisão para a prova).
 */
 public abstract class Funcionario {
     protected int matricula;
@@ -24,7 +25,72 @@ public abstract class Funcionario {
         matriculaAtual=0;
         SALARIO_MIN_BASE = 2500.00;
     }
+    
+    /** Método init para inicializar as ações comuns de todos os contrutores do Funcionario.
+     * Ação comum é que todos os objetos de Funcionario é que devem ter uma uma matricula e nome.
+    * @author Lucas Ângelo.
+    */
+    private void init(String nome) {
+        this.matricula = matriculaAtual;
+        matriculaAtual++;
+        this.nome = nome;
+    }
 
+    // CONSTRUTORES
+    /** Construtor que irá instância um funcionário e necessita de um nome.
+     * Inicializa seus dados chamando a função init() da própria classe Fucnionario.
+    * @author Lucas Ângelo.
+    */
+    public Funcionario(String nome) {
+        init(nome);
+    }
+
+    // GETTERS AND SETTERS
+    /** Retorna a matrícula de um funcionário
+    * @author Lucas Ângelo.
+    * @return int - A matrícula.
+    */
+    public int getMatricula() {
+        return this.matricula;
+    }
+    
+    /** Atualiza o nome de um funcionário
+    * @author Lucas Ângelo.
+    * @param nome String - O novo nome.
+    */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+    
+    /** Retorna o nome de um funcionário
+    * @author Lucas Ângelo.
+    * @return String - O nome.
+    */
+    public String getNome() {
+        return this.nome;
+    }
+
+    // MÉTODOS
+    /** Método abstrato para calculo do salário de um funcionário instânciado.
+    * @author Lucas Ângelo.
+    * @return double - Valor do salário.
+    */
+    public abstract double calcPagamento();
+    
+    /** Método abstrato para pagar um funcionário instânciado.
+    * @author Lucas Ângelo.
+    * @return double - Valor do salário.
+    */
+    public abstract double pagar();
+    
+    /** Função utilizada para ler os dados de funcionários de um arquivo/banco de dados.
+     * IMPORTANTE: caso seja criado um sistema e adicionado funcionárioa antes de ler os dados do arquivo, poderá haver conflito de matrículas/funcionários.
+    * @author Lucas Ângelo.
+    * @param  nomeDoArquivo String - O nome do arquivo de dados de funcionários. Nesse programa está sendo utilizado na main o arquivo "funcionários.txt".
+    * @return LinkedList<Funcionario> - Uma lista encadeada com todos os funcionários encontrados no arquivo.
+    * @throws PatternSyntaxException Caso a base de dados não esteja bem formatada, com 4 dados divididos por ";". Exemplo: de linha: TipoDoFuncionario;Matrícula;NomeDoFuncionário;QuantidadeDeProjetos
+    * @throws NumberFormatException Caso algum dados que deveria ser numérico (Ex: "1"), possua caractere no lugar (Ex: "a1").
+    */
     public static LinkedList<Funcionario> lerFuncionariosDoArquivo(String nomeDoArquivo) {
         LinkedList<Funcionario> funcionarios = new LinkedList<>();
 
@@ -71,35 +137,13 @@ public abstract class Funcionario {
         
         return funcionarios;
     }
-    private void init(String nome) {
-        this.matricula = matriculaAtual;
-        matriculaAtual++;
-        this.nome = nome;
-    }
 
-    // Construtores
-    public Funcionario(String nome) {
-        init(nome);
-    }
-
-    // Getters e Setters
-    public int getMatricula() {
-        return this.matricula;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public String getNome() {
-        return this.nome;
-    }
-
-    /** Método abstrato para calculo do salário de um funcionário instânciado.
-    * @author Lucas Ângelo
-    * @return Double - Valor do salário.
+    /** Função para verificar se dois funcionários são iguais, duas instâncias. 
+     * Foi utilizado como diferenciado a matricula.
+    * @author Lucas Ângelo.
+    * @param  funcionario Funcionario - O funcionário que será verificado se é igual.
+    * @return booelan - True caso forem iguais.
     */
-    public abstract double calcPagamento();
-    public abstract double pagar();
-
     public boolean equals(Funcionario funcionario) {
         boolean igual = false;
         if(this.matricula == funcionario.getMatricula()) {
@@ -107,5 +151,11 @@ public abstract class Funcionario {
         }
         return igual;
     } 
+    
+    /** Método abstrato para capturar os dados do Funcionario para imprimir/gerar relatório.
+     * Informar no padrão do trabalho: TipoDoFuncionario;Matrícula;NomeDoFuncionário;QuantidadeDeProjetos
+    * @author Lucas Ângelo.
+    * @return String - O relatório do funcionario que pode ser impresso, salvo, etc...
+    */
     public abstract String toString();
 }

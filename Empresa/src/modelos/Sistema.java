@@ -37,6 +37,7 @@ public class Sistema {
      * Objeto recebido é adicionado na lista de funcionários do sistema.
     * @author Lucas Ângelo.
     * @param  funcionario Funcionario - A instância do novo Funcionário que irá ser contratado/adicionado na lista do sistema.
+    * @throws FuncionarioContratadoException - Exception customizada (não solicitada) para alertar quando tentar contratar um funcionário já contratado.
     */
     public void contratar(Funcionario funcionario) {
         if(!contratado(funcionario))

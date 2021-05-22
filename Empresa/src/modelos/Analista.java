@@ -20,23 +20,28 @@ public class Analista extends Funcionario implements ICLT {
         MAX_HORAS_EXTRA = 40;
     }
 
+
     private void init(Nivel nivel, int qtHorasExtra) {
         this.nivel = nivel;
         setQtHorasExtra(qtHorasExtra);
         calcPagamento();
     }
 
-    // Construtores
+    // CONSTRUTORES
+    
     public Analista(String nome, Nivel nivel, int qtHorasExtra) {
         super(nome);
         init(nivel, qtHorasExtra);
     }
+    
+    
     public Analista(String nome, Nivel nivel) {
         super(nome);
         init(nivel, 0);
     }
 
-    // Getters e Setters
+    // GETTERS AND SETTERS
+    
     public void setQtHorasExtra(int qtHorasExtra) {
         if(qtHorasExtra>MAX_HORAS_EXTRA || qtHorasExtra<0) {
             try {
@@ -50,9 +55,13 @@ public class Analista extends Funcionario implements ICLT {
             calcPagamento(); // Quando adiciona horas extra, necessário atualizar o valor do pagamento
         }
     }
+    
+    
     public int getQtHorasExtra() {
         return this.qtHorasExtra;
     }
+    
+    
     public static void setSalarioBase(double salarioBaseNovo) {
         if(salarioBaseNovo<SALARIO_MIN_BASE) {
             try {
@@ -65,15 +74,20 @@ public class Analista extends Funcionario implements ICLT {
             salarioBase = salarioBaseNovo;
         }
     }
+    
+    
     public static double getSalarioBase() {
         return salarioBase;
     }
 
-    // Métodos
+    // MÉTODOS
+    
     @Override
     public double valorHorasExtras() {
         return (this.qtHorasExtra/90.0) * salarioBase;
     }
+    
+    
     @Override
     public double valorFerias(int meses) {
         double valor = 0;
@@ -81,6 +95,8 @@ public class Analista extends Funcionario implements ICLT {
             valor = salarioBase + (salarioBase/3) + valorHorasExtras();
         return valor;
     }
+    
+    
     @Override
     public double impostoAPagar() {
         double impostoPercentual = 0;
@@ -98,12 +114,16 @@ public class Analista extends Funcionario implements ICLT {
         
         return salarioBase*impostoPercentual;
     }
+    
+    
     @Override
     public double calcPagamento() {
         double horasExtra = valorHorasExtras();
         this.pagtoAReceber = (horasExtra + (salarioBase * this.nivel.getSalarioBase()));
         return this.pagtoAReceber;
     }
+    
+    
     @Override
     public double pagar() {
         double pago = calcPagamento();
@@ -112,6 +132,7 @@ public class Analista extends Funcionario implements ICLT {
         return pago;
     }
 
+    
     @Override
     public String toString() {
         String abreviacao = (this.nivel == Nivel.JUNIOR) ? "JR" : "SR";
@@ -120,5 +141,4 @@ public class Analista extends Funcionario implements ICLT {
         );
         return stringBuilder.toString();
     }
-
 }
