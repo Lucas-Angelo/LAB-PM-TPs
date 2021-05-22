@@ -38,7 +38,7 @@ public class Gerente extends Funcionario implements IPJ {
     public void setQtProjetos(int qtProjetos) {
         if(qtProjetos>MAX_PROJETOS || qtProjetos<0) {
             try {
-                throw new MaximoProjetosException("O máximo de projetos que um gerente pode ter é " + MAX_PROJETOS + " e mínimo 0. Quantia de projetos não alterada.");
+                throw new MaximoProjetosException("O máximo de projetos que um gerente pode ter é " + MAX_PROJETOS + " e mínimo 0. Quantia de projetos não alterada " + this.qtProjetos + ".");
             } catch (MaximoProjetosException erro) {
                 System.out.println(erro.getMessage());
                 //erro.printStackTrace();

@@ -39,7 +39,7 @@ public class Analista extends Funcionario implements ICLT {
     public void setQtHorasExtra(int qtHorasExtra) {
         if(qtHorasExtra>MAX_HORAS_EXTRA || qtHorasExtra<0) {
             try {
-                throw new MaximoHorasExtrasException("O máximo de horas extras que um analista pode ter é " + MAX_HORAS_EXTRA + " e mínimo 0. Quantia de horas extra não alterada.");
+                throw new MaximoHorasExtrasException("O máximo de horas extras que um analista pode ter é " + MAX_HORAS_EXTRA + " e mínimo 0. Quantia de horas extra não alterada " + this.qtHorasExtra + ".");
             } catch (MaximoHorasExtrasException erro) {
                 System.out.println(erro.getMessage());
                 //erro.printStackTrace();

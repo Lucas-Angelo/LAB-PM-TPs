@@ -47,15 +47,34 @@ public class Sistema {
         return contratado;
     }
     public void addHorasExtra(int matricula, int qtHorasExtra){
+        boolean cast = false;
         Analista analista = null;
         for (Funcionario func : this.funcionarios) {
             if(func.getMatricula()==matricula) {
                 try {
                     analista = (Analista) func;
-                    analista.setQtHorasExtra((analista.getQtHorasExtra() + qtHorasExtra));
+                    cast = true;
                 } catch (Exception erro) {
                     System.out.println("Funcionário informado não é analista!");
                 }
+                if(cast)
+                    analista.setQtHorasExtra((analista.getQtHorasExtra() + qtHorasExtra));
+            }
+        }
+    }
+    public void addQtProjetos(int matricula, int qtProjetos){
+        boolean cast = false;
+        Gerente gerente = null;
+        for (Funcionario func : this.funcionarios) {
+            if(func.getMatricula()==matricula) {
+                try {
+                    gerente = (Gerente) func;
+                    cast = true;
+                } catch (Exception erro) {
+                    System.out.println("Funcionário informado não é gerente!");
+                }
+                if(cast)
+                    gerente.setQtProjetos((gerente.getQtProjetos() + qtProjetos));
             }
         }
     }
