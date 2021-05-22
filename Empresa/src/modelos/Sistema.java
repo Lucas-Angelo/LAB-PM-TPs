@@ -22,7 +22,7 @@ public class Sistema {
     }
 
     public void contratar(Funcionario funcionario) {
-        if(!contratado(funcionario))
+        if(contratado(funcionario)==null)
             this.funcionarios.add(funcionario);
         else {
             try {
@@ -38,84 +38,21 @@ public class Sistema {
             contratar(funcionario);
         }
     }
-    public boolean contratado(Funcionario funcionario) {
-        boolean contratado = false;
+    public Funcionario contratado(Funcionario funcionario) {
+        Funcionario contratado = null;
         for (Funcionario func : this.funcionarios) {
             if(func.equals(funcionario))
-                contratado = true;
+                contratado = func;
         }
         return contratado;
     }
-    public void addHorasExtra(int matricula, int qtHorasExtra){
-        boolean cast = false;
-        Analista analista = null;
+    public Funcionario contratado(int matricula) {
+        Funcionario contratado = null;
         for (Funcionario func : this.funcionarios) {
-            if(func.getMatricula()==matricula) {
-                try {
-                    analista = (Analista) func;
-                    cast = true;
-                } catch (Exception erro) {
-                    System.out.println("Funcionário informado não é analista!");
-                }
-                if(cast)
-                    analista.setQtHorasExtra((analista.getQtHorasExtra() + qtHorasExtra));
-            }
+            if(func.getMatricula()==matricula)
+                contratado = func;
         }
-    }
-    public void addQtProjetos(int matricula, int qtProjetos){
-        boolean cast = false;
-        Gerente gerente = null;
-        for (Funcionario func : this.funcionarios) {
-            if(func.getMatricula()==matricula) {
-                try {
-                    gerente = (Gerente) func;
-                    cast = true;
-                } catch (Exception erro) {
-                    System.out.println("Funcionário informado não é gerente!");
-                }
-                if(cast)
-                    gerente.setQtProjetos((gerente.getQtProjetos() + qtProjetos));
-            }
-        }
-    }
-
-    public double valorFerias(int matricula, int meses) {
-        double valor = 0;
-        boolean cast = false;
-        Analista analista = null;
-        for (Funcionario func : this.funcionarios) {
-            if(func.getMatricula()==matricula) {
-                try {
-                    analista = (Analista) func;
-                    cast = true;
-                } catch (Exception erro) {
-                    System.out.println("Funcionário informado não é analista!");
-                    valor = 1;
-                }
-                if(cast)
-                    valor = analista.valorFerias(meses);
-            }
-        }
-        return valor;
-    }
-    public double calcImposto(int matricula) {
-        double valor = 0;
-        boolean cast = false;
-        Analista analista = null;
-        for (Funcionario func : this.funcionarios) {
-            if(func.getMatricula()==matricula) {
-                try {
-                    analista = (Analista) func;
-                    cast = true;
-                } catch (Exception erro) {
-                    System.out.println("Funcionário informado não é analista!");
-                    valor = 1;
-                }
-                if(cast)
-                    valor = analista.impostoAPagar();
-            }
-        }
-        return valor;
+        return contratado;
     }
 
     /** Método para calculo do total que o sistema tem que pagar para todos os funcionários.

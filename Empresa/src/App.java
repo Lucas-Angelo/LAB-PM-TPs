@@ -66,7 +66,13 @@ public class App {
                         int qtProjetos;
                         System.out.print("Informe a quantidade de projetos a mais: ");
                         qtProjetos = scanner.nextInt();
-                        sistema.addQtProjetos(matricula, qtProjetos);
+                        Gerente gerente = null;
+                        try {
+                            gerente = (Gerente) sistema.contratado(matricula);
+                            gerente.setQtProjetos(gerente.getQtProjetos() + qtProjetos);
+                        } catch (Exception erro) {
+                            System.out.println("Funcionário informado não é gerente!");
+                        }
                         System.out.println("Projetos adicionados");
                         scanner.nextLine();
                         pausa(scanner);
@@ -84,7 +90,13 @@ public class App {
                         int qtHorasExtra;
                         System.out.print("Informe a quantidade de horas extras a mais: ");
                         qtHorasExtra = scanner.nextInt();
-                        sistema.addHorasExtra(matricula, qtHorasExtra);
+                        Analista analista = null;
+                        try {
+                            analista = (Analista) sistema.contratado(matricula);
+                            analista.setQtHorasExtra(analista.getQtHorasExtra() + qtHorasExtra);
+                        } catch (Exception erro) {
+                            System.out.println("Funcionário informado não é analista!");
+                        }
                         System.out.println("Projetos horas extras adicionadas");
                         scanner.nextLine();
                         pausa(scanner);
@@ -167,14 +179,10 @@ public class App {
                     tipo = scanner.nextInt();
                     System.out.print("Informe o novo salário base: ");
                     salarioBaseNovo = scanner.nextDouble();
-                    switch (tipo) {
-                        case 1:
-                            Analista.setSalarioBase(salarioBaseNovo);
-                            break;
-                        case 2:
-                            Gerente.setSalarioBase(salarioBaseNovo);
-                            break;
-                    }
+                    if (tipo==1)
+                        Analista.setSalarioBase(salarioBaseNovo);
+                    else if(tipo==2)
+                        Gerente.setSalarioBase(salarioBaseNovo);
                     System.out.println("Salário base alterado.");
                     pausa(scanner);
                     scanner.nextLine();
@@ -188,8 +196,16 @@ public class App {
                         int meses;
                         System.out.print("Informe a quantidade de meses trabalhados: ");
                         meses = scanner.nextInt();
-                        double valor = sistema.valorFerias(matricula, meses);
-                        if(valor!=1)
+                        Analista analista = null;
+                        double valor;
+                        try {
+                            analista = (Analista) sistema.contratado(matricula);
+                            valor = analista.valorFerias(meses);
+                        } catch (Exception erro) {
+                            System.out.println("Funcionário informado não é analista!");
+                            valor = 0;
+                        }
+                        if(valor!=0)
                             System.out.println("Valor das férias: R$" + valor);
                         scanner.nextLine();
                         pausa(scanner);
@@ -204,8 +220,16 @@ public class App {
                         int matricula;
                         System.out.print("Informe a matrícula do analista: ");
                         matricula = scanner.nextInt();
-                        double valor = sistema.calcImposto(matricula);
-                        if(valor!=1)
+                        Analista analista = null;
+                        double valor;
+                        try {
+                            analista = (Analista) sistema.contratado(matricula);
+                            valor = analista.impostoAPagar();
+                        } catch (Exception erro) {
+                            System.out.println("Funcionário informado não é analista!");
+                            valor = 0;
+                        }
+                        if(valor!=0)
                             System.out.println("Imposto: R$" + valor);
                         scanner.nextLine();
                         pausa(scanner);
