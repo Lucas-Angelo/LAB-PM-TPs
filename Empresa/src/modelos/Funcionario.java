@@ -40,6 +40,7 @@ public abstract class Funcionario {
     /** Construtor que irá instância um funcionário e necessita de um nome.
      * Inicializa seus dados chamando a função init() da própria classe Fucnionario.
     * @author Lucas Ângelo.
+    * @param nome String - Nome do funcionário.
     */
     public Funcionario(String nome) {
         init(nome);

@@ -31,6 +31,8 @@ public class Analista extends Funcionario implements ICLT {
     /** Método init para inicializar as ações comuns de todos os contrutores do Analista.
      * Ação comum é que todos os objetos de Analista é que devem ter uma quantidade de horas extra, com isso, precisa-se atualizar o valor do pagamento a receber.
     * @author Lucas Ângelo.
+    * @param  nivel Nivel - Nível do analista.
+    * @param  qtHorasExtra INT - Quantidade de horas extra desse analista.
     */
     private void init(Nivel nivel, int qtHorasExtra) {
         this.nivel = nivel;
@@ -42,6 +44,9 @@ public class Analista extends Funcionario implements ICLT {
     /** Construtor que irá instância um analista já recebendo o nome, nível e a quantidade de horas extra que irá trabalhar.
      * Este chama a super classe/mãe Funcionário para preencher os valores.
      * Inicializa seus dados chamando a função init() da própria classe Analista.
+    * @param nome String - Nome do analista.
+    * @param  nivel Nivel - Nível do analista.
+    * @param  qtHorasExtra INT - Quantidade de horas extra desse analista.
     * @author Lucas Ângelo.
     */
     public Analista(String nome, Nivel nivel, int qtHorasExtra) {
@@ -52,6 +57,8 @@ public class Analista extends Funcionario implements ICLT {
     /** Construtor que irá instância um analista já recebendo o nome e nível.
      * Este chama a super classe/mãe Funcionário para preencher os valores.
      * Inicializa seus dados chamando a função init() da própria classe Analista.
+    * @param nome String - Nome do analista.
+    * @param  nivel Nivel - Nível do analista.
     * @author Lucas Ângelo.
     */
     public Analista(String nome, Nivel nivel) {

@@ -30,6 +30,7 @@ public class Gerente extends Funcionario implements IPJ {
     /** Método init para inicializar as ações comuns de todos os contrutores do Gerente.
      * Ação comum é que todos os objetos de Gerente é que devem ter uma quantidade de projetos, com isso, precisa-se atualizar o valor do pagamento a receber.
     * @author Lucas Ângelo.
+    * @param qtProjetos INT - Quantidade de projetos desse gerente.
     */
     private void init(int qtProjetos) {
         setQtProjetos(qtProjetos);
@@ -41,6 +42,8 @@ public class Gerente extends Funcionario implements IPJ {
      * Este chama a super classe/mãe Funcionário para preencher os valores.
      * Inicializa seus dados chamando a função init() da própria classe Gerente.
     * @author Lucas Ângelo.
+    * @param nome String - Nome do gerente.
+    * @param qtProjetos INT - Quantidade de projetos desse gerente.
     */
     public Gerente(String nome, int qtProjetos) {
         super(nome);
@@ -50,6 +53,7 @@ public class Gerente extends Funcionario implements IPJ {
     /** Construtor que irá instância um gerente recebendo o nome
      * Este chama a super classe/mãe Funcionário para preencher os valores.
      * Inicializa seus dados chamando a função init() da própria classe Gerente.
+    * @param nome String - Nome do gerente.
     * @author Lucas Ângelo.
     */
     public Gerente(String nome) {

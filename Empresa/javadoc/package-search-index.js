@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"arquivos"},{"l":"enums"},{"l":"excecoes"},{"l":"interfaces"},{"l":"modelos"}];updateSearchResults();
