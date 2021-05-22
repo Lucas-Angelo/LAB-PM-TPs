@@ -45,8 +45,8 @@ public class Gerente extends Funcionario implements IPJ {
             }
         } else {
             this.qtProjetos = qtProjetos;
+            calcPagamento(); // Quando adiciona horas extra, necessário atualizar o valor do pagamento
         }
-        calcPagamento();
     }
     public int getQtProjetos() {
         return this.qtProjetos;

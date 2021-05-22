@@ -46,8 +46,8 @@ public class Analista extends Funcionario implements ICLT {
             }
         } else {
             this.qtHorasExtra = qtHorasExtra;
+            calcPagamento(); // Quando adiciona horas extra, necessário atualizar o valor do pagamento
         }
-        this.pagtoAReceber = calcPagamento();
     }
     public int getQtHorasExtra() {
         return this.qtHorasExtra;
