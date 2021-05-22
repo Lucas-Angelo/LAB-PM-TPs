@@ -25,16 +25,6 @@ public abstract class Funcionario {
         SALARIO_MIN_BASE = 2500.00;
     }
 
-    private void init(String nome) {
-        this.matricula = matriculaAtual;
-        matriculaAtual++;
-        this.nome = nome;
-    }
-
-    public Funcionario(String nome) {
-        init(nome);
-    }
-
     public static LinkedList<Funcionario> lerFuncionariosDoArquivo(String nomeDoArquivo) {
         LinkedList<Funcionario> funcionarios = new LinkedList<>();
 
@@ -80,6 +70,16 @@ public abstract class Funcionario {
         } while (linha!=null);
         
         return funcionarios;
+    }
+    private void init(String nome) {
+        this.matricula = matriculaAtual;
+        matriculaAtual++;
+        this.nome = nome;
+    }
+
+    // Construtores
+    public Funcionario(String nome) {
+        init(nome);
     }
 
     // Getters e Setters

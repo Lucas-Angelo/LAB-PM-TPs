@@ -179,6 +179,41 @@ public class App {
                     pausa(scanner);
                     scanner.nextLine();
                     break;
+                case 11:
+                    if(sistema!=null) {
+                        limparTerminal();
+                        int matricula;
+                        System.out.print("Informe a matrícula do analista: ");
+                        matricula = scanner.nextInt();
+                        int meses;
+                        System.out.print("Informe a quantidade de meses trabalhados: ");
+                        meses = scanner.nextInt();
+                        double valor = sistema.valorFerias(matricula, meses);
+                        if(valor!=1)
+                            System.out.println("Valor das férias: R$" + valor);
+                        scanner.nextLine();
+                        pausa(scanner);
+                    } else {
+                        System.out.println("Sistema ainda não criado!");
+                        pausa(scanner);
+                    }
+                    break;
+                case 12:
+                    if(sistema!=null) {
+                        limparTerminal();
+                        int matricula;
+                        System.out.print("Informe a matrícula do analista: ");
+                        matricula = scanner.nextInt();
+                        double valor = sistema.calcImposto(matricula);
+                        if(valor!=1)
+                            System.out.println("Imposto: R$" + valor);
+                        scanner.nextLine();
+                        pausa(scanner);
+                    } else {
+                        System.out.println("Sistema ainda não criado!");
+                        pausa(scanner);
+                    }
+                    break;
                 case 0:
                     if(sistema!=null) {
                         limparTerminal();
@@ -265,6 +300,8 @@ public class App {
         System.out.println("8 - Calcular pagamento de todos os funcionários");
         System.out.println("9 - Pagar todos os funcionários");
         System.out.println("10 - Definir salário base para tipo de funcionário");
+        System.out.println("11 - Calcular valor das férias de um analista");
+        System.out.println("12 - Calcular imposto de um analista");
         System.out.println("0 - Sair");
         System.out.print("\nDigite sua opção: ");
         opcao = scanner.nextInt();

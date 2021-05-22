@@ -79,6 +79,45 @@ public class Sistema {
         }
     }
 
+    public double valorFerias(int matricula, int meses) {
+        double valor = 0;
+        boolean cast = false;
+        Analista analista = null;
+        for (Funcionario func : this.funcionarios) {
+            if(func.getMatricula()==matricula) {
+                try {
+                    analista = (Analista) func;
+                    cast = true;
+                } catch (Exception erro) {
+                    System.out.println("Funcionário informado não é analista!");
+                    valor = 1;
+                }
+                if(cast)
+                    valor = analista.valorFerias(meses);
+            }
+        }
+        return valor;
+    }
+    public double calcImposto(int matricula) {
+        double valor = 0;
+        boolean cast = false;
+        Analista analista = null;
+        for (Funcionario func : this.funcionarios) {
+            if(func.getMatricula()==matricula) {
+                try {
+                    analista = (Analista) func;
+                    cast = true;
+                } catch (Exception erro) {
+                    System.out.println("Funcionário informado não é analista!");
+                    valor = 1;
+                }
+                if(cast)
+                    valor = analista.impostoAPagar();
+            }
+        }
+        return valor;
+    }
+
     /** Método para calculo do total que o sistema tem que pagar para todos os funcionários.
     * @author Lucas Ângelo.
     * @return Double - Valor total a pagar de salário para todos os funcionários.

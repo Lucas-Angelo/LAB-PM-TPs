@@ -26,6 +26,7 @@ public class Analista extends Funcionario implements ICLT {
         calcPagamento();
     }
 
+    // Construtores
     public Analista(String nome, Nivel nivel, int qtHorasExtra) {
         super(nome);
         init(nivel, qtHorasExtra);
@@ -75,13 +76,27 @@ public class Analista extends Funcionario implements ICLT {
     }
     @Override
     public double valorFerias(int meses) {
-        // TODO Auto-generated method stub
-        return 0;
+        double valor = 0;
+        if(meses>=12)
+            valor = salarioBase + (salarioBase/3) + valorHorasExtras();
+        return valor;
     }
     @Override
     public double impostoAPagar() {
-        // TODO Auto-generated method stub
-        return 0;
+        double impostoPercentual = 0;
+
+        if(this.pagtoAReceber >= 1903.99 && this.pagtoAReceber<=2826.65)
+            impostoPercentual = 7.5;
+        else if(this.pagtoAReceber >= 2826.66 && this.pagtoAReceber<=3751.05)
+            impostoPercentual = 15;
+        else if(this.pagtoAReceber >= 3751.06 && this.pagtoAReceber<=4664.68)
+            impostoPercentual = 22.5;
+        else
+            impostoPercentual = 4664.68;
+
+        impostoPercentual = impostoPercentual/100;
+        
+        return salarioBase*impostoPercentual;
     }
     @Override
     public double calcPagamento() {
