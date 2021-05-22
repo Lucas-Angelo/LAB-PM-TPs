@@ -23,6 +23,7 @@ public class Analista extends Funcionario implements ICLT {
     private void init(Nivel nivel, int qtHorasExtra) {
         this.nivel = nivel;
         setQtHorasExtra(qtHorasExtra);
+        calcPagamento();
     }
 
     public Analista(String nome, Nivel nivel, int qtHorasExtra) {
@@ -46,6 +47,7 @@ public class Analista extends Funcionario implements ICLT {
         } else {
             this.qtHorasExtra = qtHorasExtra;
         }
+        this.pagtoAReceber = calcPagamento();
     }
     public int getQtHorasExtra() {
         return this.qtHorasExtra;
@@ -89,11 +91,10 @@ public class Analista extends Funcionario implements ICLT {
     }
     @Override
     public double pagar() {
-        double aPagar = calcPagamento();
-        setQtHorasExtra(0);
-        calcPagamento();
-        System.out.println(this.pagtoAReceber);
-        return aPagar;
+        double pago = calcPagamento();
+        setQtHorasExtra(0); // Analista resetam a hora extra após receberem o salário
+        this.pagtoAReceber = calcPagamento(); // Necessário calcular o novo salário com a hora extra removida.
+        return pago;
     }
 
     @Override

@@ -69,17 +69,17 @@ public class Gerente extends Funcionario implements IPJ {
 
     // Métodos
     @Override
-    public double calcPagamento() {
-        this.pagtoAReceber = salarioBase + valorBonus();
-        return (this.pagtoAReceber);
-    }
-    @Override
     public double valorBonus() {
         double bonus = 0.0;
         for(int i=0; i<this.qtProjetos; i++) {
             bonus += salarioBase * PORCENTAGEM_BONUS;
         }
         return bonus;
+    }
+    @Override
+    public double calcPagamento() {
+        this.pagtoAReceber = salarioBase + valorBonus();
+        return (this.pagtoAReceber);
     }
     @Override
     public double pagar() {
