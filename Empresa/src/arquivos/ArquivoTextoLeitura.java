@@ -6,6 +6,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
+/** Classe para tratamento de escrita em arquivos.
+* @author Eveline.
+*/
 public class ArquivoTextoLeitura {
 
     private BufferedReader entrada;

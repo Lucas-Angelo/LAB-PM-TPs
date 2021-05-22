@@ -140,7 +140,7 @@ public class Gerente extends Funcionario implements IPJ {
         return (this.pagtoAReceber);
     }
     
-    /** Utilliza o calcPagamento() do Gerente para calcular o salário a ser pago, e paga
+    /** Utilliza o calcPagamento() do Gerente para calcular o salário a ser pago, e paga.
      * Ao pagar, a quantidade de projeto não é alterado, pois o gerente pode continuar trabalhando em todos os projetos.
     * @author Lucas Ângelo.
     * @return double - O salário pago.

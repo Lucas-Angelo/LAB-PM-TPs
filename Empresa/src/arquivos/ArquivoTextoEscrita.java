@@ -5,6 +5,9 @@ import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
+/** Classe para tratamento de escrita em arquivos.
+* @author Eveline.
+*/
 public class ArquivoTextoEscrita {
 
     private BufferedWriter saida;
