@@ -43,6 +43,7 @@ public class App {
                         System.out.println("Funcionário criado e contratado.");
                         pausa(scanner);
                     } else {
+                        limparTerminal();
                         System.out.println("Sistema ainda não criado!");
                         pausa(scanner);
                     }
@@ -53,6 +54,7 @@ public class App {
                         System.out.println(sistema.toString());
                         pausa(scanner);
                     } else {
+                        limparTerminal();
                         System.out.println("Sistema ainda não criado!");
                         pausa(scanner);
                     }
@@ -63,10 +65,15 @@ public class App {
                         int matricula;
                         System.out.print("Informe a matrícula do funcionário: ");
                         matricula = scanner.nextInt();
-                        System.out.println("Valor do salário total do funcionário é: R$" + sistema.calcPagamento(matricula));
+                        double salario = sistema.calcPagamento(matricula);
+                        if(salario!=0)
+                            System.out.println("Valor do salário total do funcionário é: R$" + salario);
+                        else
+                            System.out.println("Funcionário não existe");
                         scanner.nextLine();
                         pausa(scanner);
                     } else {
+                        limparTerminal();
                         System.out.println("Sistema ainda não criado!");
                         pausa(scanner);
                     }
@@ -77,10 +84,15 @@ public class App {
                         int matricula;
                         System.out.print("Informe a matrícula do funcionário: ");
                         matricula = scanner.nextInt();
-                        System.out.println("Funcionário pago em: R$" + sistema.pagarFuncionario(matricula));
+                        double salario = sistema.pagarFuncionario(matricula);
+                        if(salario!=0)
+                            System.out.println("Funcionário pago em: R$" + sistema.pagarFuncionario(matricula));
+                        else
+                            System.out.println("Funcionário não existe");
                         scanner.nextLine();
                         pausa(scanner);
                     } else {
+                        limparTerminal();
                         System.out.println("Sistema ainda não criado!");
                         pausa(scanner);
                     }
@@ -88,9 +100,13 @@ public class App {
                 case 6:
                     if(sistema!=null) {
                         limparTerminal();
+                        double total = sistema.calcTotalAPagar();
                         System.out.println("O total a ser pago para todos os funcionário desse sistema é: R$" + sistema.calcTotalAPagar());
+                        if(total==0)
+                            System.out.println("Sistema está sem funcionários");
                         pausa(scanner);
                     } else {
+                        limparTerminal();
                         System.out.println("Sistema ainda não criado!");
                         pausa(scanner);
                     }
@@ -98,7 +114,11 @@ public class App {
                 case 7:
                         if(sistema!=null) {
                             limparTerminal();
-                            System.out.println("Todos os funcionário desse sistema foram pagos ao todo com: R$" + sistema.pagarTodosOsFuncionarios());
+                            double total = sistema.pagarTodosOsFuncionarios();
+                            if(total!=0)
+                                System.out.println("Todos os funcionário desse sistema foram pagos ao todo com: R$" + sistema.pagarTodosOsFuncionarios());
+                            else
+                                System.out.println("Sistema sem usuários");
                             pausa(scanner);
                         } else {
                             System.out.println("Sistema ainda não criado!");
@@ -135,9 +155,11 @@ public class App {
                         System.out.println("2 - Não salvar");
                         System.out.print("Deseja salvar os dados do sistema no arquivo: ");
                         salvar = scanner.nextInt();
-                        if(salvar==1)
+                        if(salvar==1) {
                             sistema.salvar("funcionarios.txt");
-                        System.out.println("Dados salvos!");
+                            System.out.println("Dados salvos!");
+                        }
+                        limparTerminal();
                     }
                     break;
             }

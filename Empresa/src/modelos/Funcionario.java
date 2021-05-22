@@ -92,10 +92,6 @@ public abstract class Funcionario {
     public String getNome() {
         return this.nome;
     }
-    public double getPagtoAReceber() {
-        calcPagamento();
-        return this.pagtoAReceber;
-    }
 
     /** Método abstrato para calculo do salário de um funcionário instânciado.
     * @author Lucas Ângelo
