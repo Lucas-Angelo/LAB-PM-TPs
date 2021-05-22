@@ -45,8 +45,8 @@ public class Gerente extends Funcionario implements IPJ {
             }
         } else {
             this.qtProjetos = qtProjetos;
+            calcPagamento();
         }
-        calcPagamento();
     }
     public int getQtProjetos() {
         return this.qtProjetos;
@@ -83,8 +83,9 @@ public class Gerente extends Funcionario implements IPJ {
     }
     @Override
     public double pagar() {
-        this.pagtoAReceber = calcPagamento();
-        return this.pagtoAReceber;
+        double pago = calcPagamento();
+        // calcPagamento(); // Remover comentário como caso exemplo: tenha que calcular algo como hora extra após pagar
+        return pago;
     }
 
     public String toString() {

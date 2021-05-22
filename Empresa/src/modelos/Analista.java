@@ -46,8 +46,8 @@ public class Analista extends Funcionario implements ICLT {
             }
         } else {
             this.qtHorasExtra = qtHorasExtra;
+            calcPagamento();
         }
-        this.pagtoAReceber = calcPagamento();
     }
     public int getQtHorasExtra() {
         return this.qtHorasExtra;
@@ -92,8 +92,8 @@ public class Analista extends Funcionario implements ICLT {
     @Override
     public double pagar() {
         double pago = calcPagamento();
-        setQtHorasExtra(0);
-        this.pagtoAReceber = calcPagamento();
+        setQtHorasExtra(0); // Analista resetam a hora extra após receberem o salário
+        calcPagamento(); // Necessário calcular o novo salário com a hora extra removida.
         return pago;
     }
 

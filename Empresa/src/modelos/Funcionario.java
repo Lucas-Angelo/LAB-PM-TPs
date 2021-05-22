@@ -93,6 +93,7 @@ public abstract class Funcionario {
         return this.nome;
     }
     public double getPagtoAReceber() {
+        calcPagamento();
         return this.pagtoAReceber;
     }
 

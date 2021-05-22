@@ -210,7 +210,7 @@ public class App {
         System.out.println("6 - Calcular pagamento de todos os funcionários");
         System.out.println("7 - Pagar todos os funcionários");
         System.out.println("8 - Definir salário base para tipo de funcionário");
-        System.out.println("0 - Sair"); // Falta
+        System.out.println("0 - Sair");
         System.out.print("\nDigite sua opção: ");
         opcao = scanner.nextInt();
         scanner.nextLine();
