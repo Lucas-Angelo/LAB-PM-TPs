@@ -3,17 +3,17 @@ package modelos;
 import excecoes.MaximoProjetosException;
 import excecoes.MinimoSalarioBaseException;
 
-import interfaces.IPJ;
+import interfaces.PJ;
 
 /** Classe para objetos do tipo Gerente.
  * Possui especificamente a quantidade de projetos para cada objeto.
  * Estende da classe Funcionário, pois é um.
- * Implementa a interface IPJ.
+ * Implementa a interface PJ.
 * @author Lucas Ângelo.
 * @version 1.0
 * @since Release 01, (Revisão para a prova).
 */
-public class Gerente extends Funcionario implements IPJ {
+public class Gerente extends Funcionario implements PJ {
     protected int qtProjetos;
 
     protected static double salarioBase;
