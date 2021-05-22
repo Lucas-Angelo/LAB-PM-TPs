@@ -7,13 +7,14 @@ import modelos.*;
 /** Classe principal do App, onde está contida a função main. Além disso, alguns métodos de auxílio.
 * @author Lucas Ângelo.
 * @version 1.0
-* @since Release "Revisão para a prova 1 de laboratório de programação modular".
+* @since Release 01, (Revisão para a prova).
 */
 public class App {
-    /** Função principal/main do App.
-     * @param args Não utilizado.
-     * @throws Exception Caso ocorra algum excessão em todo o programa.
-     */
+    /** Método principal/main do App.
+    * @author Lucas Ângelo.
+    * @param args Não utilizado.
+    * @throws Exception Caso ocorra algum excessão em todo o programa.
+    */
     public static void main(String[] args) throws Exception {
         limparTerminal();
         animacaoCarregamento();
@@ -38,7 +39,7 @@ public class App {
                 case 2:
                     if(sistema!=null) {
                         limparTerminal();
-                        funcionario = preencherDadosFuncionario(scanner, sistema, funcionario);
+                        funcionario = preencherDadosFuncionario(scanner, funcionario);
                         sistema.contratar(funcionario);
                         System.out.println("Funcionário criado e contratado.");
                         pausa(scanner);
@@ -257,7 +258,14 @@ public class App {
 
     }
 
-    private static Funcionario preencherDadosFuncionario(Scanner scanner, Sistema sistema, Funcionario funcionario) {
+    /** Método para solicitar dados de preenchimento para criar um novo objeto da classe Funcionário.
+    * Utilizado pelo 'case' == 2 do menu de opções.
+    * @author Lucas Ângelo.
+    * @param  scanner Scanner - O escaner de dados do teclado para preencher informações do novo funcionário.
+    * @param  funcionario Funcionario - O objeto funcionário que será instânciado como algum tipo de funcionário e preenchido.
+    * @return Funcionario - Funcionário criado, pronto para ser contratado.
+    */
+    private static Funcionario preencherDadosFuncionario(Scanner scanner, Funcionario funcionario) {
         String nome;
         System.out.print("Informe o nome do funcionário novo: ");
         nome = scanner.nextLine();
@@ -310,6 +318,11 @@ public class App {
         return funcionario;
     }
 
+    /** O menu de opções de ações que podem ser efetuados no App.
+    * @author Lucas Ângelo.
+    * @param  scanner Scanner - O escaner de dados do teclado para escanear a opção escolhida.
+    * @return int - Opção numérica escolhida.
+    */
     private static int menu(Scanner scanner) {
         int opcao;
         System.out.println("XULAMBS INFORMÁTICA by Lucas Ângelo");
@@ -338,6 +351,10 @@ public class App {
         scanner.nextLine();
     }
 
+    /** Uma função fictícia para emular um carregamento do banco de dados do sistema e deixar o App bonitinho.
+    * @author Lucas Ângelo
+    * @throws InterruptedException Se o sistema negar a Thread.
+    */
     private static void animacaoCarregamento() throws InterruptedException {
         int i = 0;
         System.out.println("Carregando banco de dados (funcionários.txt).");
@@ -364,7 +381,7 @@ public class App {
 
     /** Método para limpar o terminal do programa.
     * Eficiente para editores de texto como VSCode, IDE's não precisam.
-    * @author Lucas Ângelo
+    * @author Lucas Ângelo.
     * @throws InterruptedException Se ocorrer algum erro de interrupção por parte do SO ao tentar lançar o comando no cmd.
     * @throws IOException Se ocorrer algum erro ao tentar emtrar ou sair com o comando no cmd.
     */
