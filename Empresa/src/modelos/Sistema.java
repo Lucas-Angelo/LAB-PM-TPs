@@ -13,7 +13,7 @@ import excecoes.FuncionarioContratadoException;
 * @since Release 01, (Revisão para a prova).
 */
 public class Sistema {
-    public List<Funcionario> funcionarios;
+    private List<Funcionario> funcionarios;
 
     /** Método init para inicializar as ações comuns de todos os contrutores do Sistema.
      * Ação comum é que todos os objetos de Sistemas devem ter uma lista de funcionários.
@@ -23,6 +23,7 @@ public class Sistema {
         this.funcionarios = new LinkedList<Funcionario>();
     }
     
+    // CONSTRUTORES    
     /** Construtor vazio que irá inicializar o objeto instânciado.
     * @author Lucas Ângelo.
     */
@@ -30,6 +31,7 @@ public class Sistema {
         init();
     }
 
+    // MÉTODOS
     /** Método utilizado para contratar um funcionário novo.
      * Recebe o objeto do funcionário que irá ser contratado.
      * Objeto recebido é adicionado na lista de funcionários do sistema.
