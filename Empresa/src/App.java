@@ -209,6 +209,8 @@ public class App {
                         }
                         if(valor!=0)
                             System.out.println("Valor das férias: R$" + valor);
+                        else
+                            System.out.println("Necessário 12 meses de trabalho.");
                         scanner.nextLine();
                         pausa(scanner);
                     } else {
