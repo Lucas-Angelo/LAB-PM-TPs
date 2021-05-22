@@ -46,6 +46,19 @@ public class Sistema {
         }
         return contratado;
     }
+    public void addHorasExtra(int matricula, int qtHorasExtra){
+        Analista analista = null;
+        for (Funcionario func : this.funcionarios) {
+            if(func.getMatricula()==matricula) {
+                try {
+                    analista = (Analista) func;
+                    analista.setQtHorasExtra((analista.getQtHorasExtra() + qtHorasExtra));
+                } catch (Exception erro) {
+                    System.out.println("Funcionário informado não é analista!");
+                }
+            }
+        }
+    }
 
     /** Método para calculo do total que o sistema tem que pagar para todos os funcionários.
     * @author Lucas Ângelo.

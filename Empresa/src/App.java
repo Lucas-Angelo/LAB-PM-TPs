@@ -63,7 +63,10 @@ public class App {
                         int matricula;
                         System.out.print("Informe a matrícula do funcionário: ");
                         matricula = scanner.nextInt();
-                        System.out.println("Valor do salário total do funcionário é: R$" + sistema.calcPagamento(matricula));
+                        int qtHorasExtra;
+                        System.out.print("Informe a quantidade de horas extras a mais: ");
+                        qtHorasExtra = scanner.nextInt();
+                        sistema.addHorasExtra(matricula, qtHorasExtra);
                         scanner.nextLine();
                         pausa(scanner);
                     } else {
@@ -77,7 +80,7 @@ public class App {
                         int matricula;
                         System.out.print("Informe a matrícula do funcionário: ");
                         matricula = scanner.nextInt();
-                        System.out.println("Funcionário pago em: R$" + sistema.pagarFuncionario(matricula));
+                        System.out.println("Valor do salário total do funcionário é: R$" + sistema.calcPagamento(matricula));
                         scanner.nextLine();
                         pausa(scanner);
                     } else {
@@ -88,7 +91,11 @@ public class App {
                 case 6:
                     if(sistema!=null) {
                         limparTerminal();
-                        System.out.println("O total a ser pago para todos os funcionário desse sistema é: R$" + sistema.calcTotalAPagar());
+                        int matricula;
+                        System.out.print("Informe a matrícula do funcionário: ");
+                        matricula = scanner.nextInt();
+                        System.out.println("Funcionário pago em: R$" + sistema.pagarFuncionario(matricula));
+                        scanner.nextLine();
                         pausa(scanner);
                     } else {
                         System.out.println("Sistema ainda não criado!");
@@ -96,6 +103,16 @@ public class App {
                     }
                     break;
                 case 7:
+                    if(sistema!=null) {
+                        limparTerminal();
+                        System.out.println("O total a ser pago para todos os funcionário desse sistema é: R$" + sistema.calcTotalAPagar());
+                        pausa(scanner);
+                    } else {
+                        System.out.println("Sistema ainda não criado!");
+                        pausa(scanner);
+                    }
+                    break;
+                case 8:
                         if(sistema!=null) {
                             limparTerminal();
                             System.out.println("Todos os funcionário desse sistema foram pagos ao todo com: R$" + sistema.pagarTodosOsFuncionarios());
@@ -105,7 +122,7 @@ public class App {
                             pausa(scanner);
                         }
                         break;
-                case 8:
+                case 9:
                     limparTerminal();
                     double salarioBaseNovo;
                     int tipo;
@@ -206,11 +223,12 @@ public class App {
         System.out.println("1 - Criar sistema");
         System.out.println("2 - Contratar novo funcionário");
         System.out.println("3 - Detalhes do sistema");
-        System.out.println("4 - Calcular pagamento de um funcionário");
-        System.out.println("5 - Pagar um funcionário");
-        System.out.println("6 - Calcular pagamento de todos os funcionários");
-        System.out.println("7 - Pagar todos os funcionários");
-        System.out.println("8 - Definir salário base para tipo de funcionário");
+        System.out.println("4 - Adicionar horas extra");
+        System.out.println("5 - Calcular pagamento de um funcionário");
+        System.out.println("6 - Pagar um funcionário");
+        System.out.println("7 - Calcular pagamento de todos os funcionários");
+        System.out.println("8 - Pagar todos os funcionários");
+        System.out.println("9 - Definir salário base para tipo de funcionário");
         System.out.println("0 - Sair");
         System.out.print("\nDigite sua opção: ");
         opcao = scanner.nextInt();
