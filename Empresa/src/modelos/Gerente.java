@@ -109,14 +109,6 @@ public class Gerente extends Funcionario implements IPJ {
             salarioBase = salarioBaseNovo;
         }
     }
-    
-    /** Retorna o valor do salário base de Gerentes.
-    * @author Lucas Ângelo.
-    * @return int - O valor estatico de salário base de Gerentes.
-    */
-    public static double getSalarioBase() {
-        return salarioBase;
-    }
 
     // MÉTODOS
     /** Calcula o bônus que o gerente recebe pela quantidade de projetos que ele gerencia.
