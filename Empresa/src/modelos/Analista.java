@@ -1,11 +1,10 @@
 package modelos;
 
-import enums.Nivel;
-
 import excecoes.MaximoHorasExtrasException;
 import excecoes.MinimoSalarioBaseException;
 
 import interfaces.CLT;
+import interfaces.INivel;
 
 /** Classe para objetos do tipo Analista.
  * Possui especificamente a quantidade de projetos para cada objeto.
@@ -17,7 +16,7 @@ import interfaces.CLT;
 */
 public class Analista extends Funcionario implements CLT {
     protected int qtHorasExtra;
-    protected Nivel nivel;
+    protected INivel nivel;
 
     protected static double salarioBase;
 
@@ -32,7 +31,7 @@ public class Analista extends Funcionario implements CLT {
      * Ação comum é que todos os objetos de Analista é que devem ter uma quantidade de horas extra, com isso, precisa-se atualizar o valor do pagamento a receber.
     * @author Lucas Ângelo.
     */
-    private void init(Nivel nivel, int qtHorasExtra) {
+    private void init(INivel nivel, int qtHorasExtra) {
         this.nivel = nivel;
         setQtHorasExtra(qtHorasExtra);
         calcPagamento();
@@ -47,7 +46,7 @@ public class Analista extends Funcionario implements CLT {
     * @param  qtHorasExtra INT - Quantidade de horas extra desse.
     * @author Lucas Ângelo.
     */
-    public Analista(String nome, Nivel nivel, int qtHorasExtra) {
+    public Analista(String nome, INivel nivel, int qtHorasExtra) {
         super(nome);
         init(nivel, qtHorasExtra);
     }
@@ -57,7 +56,7 @@ public class Analista extends Funcionario implements CLT {
      * Inicializa seus dados chamando a função init() da própria classe Analista.
     * @author Lucas Ângelo.
     */
-    public Analista(String nome, Nivel nivel) {
+    public Analista(String nome, INivel nivel) {
         super(nome);
         init(nivel, 0);
     }
@@ -204,7 +203,7 @@ public class Analista extends Funcionario implements CLT {
     */
     @Override
     public String toString() {
-        String abreviacao = (this.nivel == Nivel.JUNIOR) ? "JR" : "SR";
+        String abreviacao = (this.nivel.getSalarioBase()==1.0d) ? "JR" : "SR";
         StringBuilder stringBuilder = new StringBuilder (
             "Analista" + abreviacao + ";" + this.matricula + ";" + this.nome + ";" + this.qtHorasExtra
         );
